@@ -1,6 +1,6 @@
 #+xcvb (module (:depends-on ("character-classes")))
 
-(in-package :qwalitee)
+(in-package :rpm)
 
 (named-readtables:in-readtable :λ-standard)
 
