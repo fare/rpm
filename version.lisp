@@ -100,20 +100,18 @@ or nil is none does"
        (t '=)))))
 
 (defun compare-rpm-version-components (v1 v2)
-  (let ((l1 (parse-rpm-version-component v1))
-        (l2 (parse-rpm-version-component v2)))
-    (loop :with l1 = (parse-rpm-version-component v1)
-      :with l2 = (parse-rpm-version-component v2)
-      :while (and l1 l2) :do
-      (let ((r (compare-rpm-version-chunks (pop l1) (pop l2))))
-        (ecase r
-          ((< > nil) (return r))
-          ((=) nil)))
-      :finally
-      (cond
-        (l1 (return '>))
-        (l2 (return '<))
-        (t (return '=))))))
+  (loop :with l1 = (parse-rpm-version-component v1)
+    :with l2 = (parse-rpm-version-component v2)
+    :while (and l1 l2) :do
+    (let ((r (compare-rpm-version-chunks (pop l1) (pop l2))))
+      (ecase r
+        ((< > nil) (return r))
+        ((=) nil)))
+    :finally
+    (cond
+      (l1 (return '>))
+      (l2 (return '<))
+      (t (return '=)))))
 
 (defun parse-rpm-version (x)
   (block nil

@@ -3,7 +3,9 @@
 (in-package :cl)
 
 (defpackage :rpm
-  (:use :common-lisp :inferior-shell)
+  (:use :common-lisp :inferior-shell :λ-reader :fare-utils :xcvb-driver)
+  (:import-from :asdf
+   #:probe-file*)
   (:export
    #:parse-rpm-versioned-name
    #:rpm-versioned-name-basename #:rpm-versioned-name-version
