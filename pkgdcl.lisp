@@ -3,7 +3,7 @@
 (in-package :cl)
 
 (defpackage :rpm
-  (:use :inferior-shell)
+  (:use :common-lisp :inferior-shell)
   (:export
    #:parse-rpm-versioned-name
    #:rpm-versioned-name-basename #:rpm-versioned-name-version
