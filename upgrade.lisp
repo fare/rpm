@@ -20,7 +20,7 @@
           ,@(unless (eq packagenames t)
               `((egrep ("^(" ,@(loop :for (name . more) :on packagenames
                                  :collect name :when more :collect "|")
-                             ")-[^-]+-[^-]+$")))))
+                             ")-[^-]+(-[^-]+)?$")))))
    :host host))
 
 (defun rpms-to-update (desired-rpms &key
