@@ -5,7 +5,7 @@
   :maintainer "Francois-Rene Rideau"
   :licence "MIT" ;; MIT-style license. See LICENSE
   :description "manipulate RPM packages"
-  ("/asdf" "/inferior-shell" "/lambda-reader" "/fare-utils")
+  :build-depends-on ("/asdf" "/inferior-shell" "/lambda-reader" "/fare-utils")
   :depends-on
   ("pkgdcl" "character-classes" "specials" "version" "upgrade")
   :supersedes-asdf ("rpm")))
