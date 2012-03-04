@@ -1,0 +1,68 @@
+RPM
+
+This library allows you to manipulate RPM packages from CL.
+
+
+==== Exported Functionality ====
+
+The rpm library creates a package RPM,
+that exports the following macros and functions:
+
+PARSE-RPM-VERSIONED-NAME STRING &KEY START END
+  parses the STRING (within START and END bounds)
+  as an rpm versioned package name, returning as multiple values two strings,
+  one for the base package name and the other for epoch, version and release.
+  e.g. "foo-1.4-6" ==> "foo" "1.4-6"
+
+RPM-VERSIONED-NAME-BASENAME STRING
+  from a rpm versioned package name, extract the base package name.
+  e.g. "foo-1.4-6" ==> "foo"
+
+RPM-VERSIONED-NAME-VERSION STRING
+  from a rpm versioned package name, extract the epoch, version and release.
+  e.g. "foo-1.4-6" ==> "1.4-6"
+
+PARSE-RPM-PATHNAME PATHNAME
+  from the designator of a pathname to a RPM, extract as multiple values:
+  * the pathname of the parent directory
+  * the base name of the package
+  * the epoch:version-release string
+  * the architecture
+  e.g. "/tmp/foo-1.4-6.x86_64.rpm" ==> #P"/tmp/" "foo" "1.4-6" "x86_64"
+
+RPM-PATHNAME-PACKAGENAME PATHNAME
+  from the designator of a pathname to a RPM,
+  extract the base name of the package
+  e.g. "/tmp/foo-1.4-6.x86_64.rpm" ==> "foo"
+
+RPM-PATHNAME-VERSION PATHNAME
+  from the designator of a pathname to a RPM,
+  extract the epoch:version-release string
+  e.g. "/tmp/foo-1.4-6.x86_64.rpm" ==> "1.4-6"
+
+RPM-VERSION= V1 V2
+RPM-VERSION<= V1 V2
+RPM-VERSION< V1 V2
+RPM-VERSION>= V1 V2
+RPM-VERSION> V1 V2
+  compares the two given epoch:version-release strings,
+  and returns T if the first is respectively
+  equal, lesser or equal, lesser, greater or equal, or greater
+  than the second one as far as RPM is concerned.
+
+RPMS-INSTALLED &KEY PACKAGENAMES HOST
+  return a list of versioned packagenames for the RPM packages installed
+  on specified HOST (default: NIL, denoting current host),
+  that match the list of names specified in PACKAGENAMES,
+  or all packages if PACKAGENAMES is T (the default).
+
+RPMS-TO-UPDATE DESIRED-RPMS &KEY HOST TEST
+  given a list of DESIRED-RPMS of pathnames to RPM packages,
+  a host HOST (default NIL, denoting current host),
+  a test TEST (default RPM-VERSION<=, allowing newer versions than desired),
+  return a list of the RPMs to install so all RPMs of given packagenames
+  will be install and of a version satisfying the test with the desired version.
+  With the default test RPM-VERSION<= this means that the desired RPM won't be
+  listed if an existing more recent version is installed, whereas if you supply
+  :TEST RPM-VERSION= then the desired RPM will only be skipped if
+  an exact matching version is already installed.
