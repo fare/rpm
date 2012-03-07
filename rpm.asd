@@ -1,7 +1,7 @@
 ;;; -*- Lisp -*-
 
 (defsystem :rpm
-  :depends-on (:inferior-shell :lambda-reader :fare-utils)
+  :depends-on (:inferior-shell :lambda-reader :fare-utils :cl-ppcre)
   :components
   ((:file "pkgdcl")
    (:file "specials" :depends-on ("pkgdcl"))
