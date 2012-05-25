@@ -9,7 +9,9 @@
   (:export
    #:parse-rpm-versioned-name
    #:rpm-versioned-name-basename #:rpm-versioned-name-version
-   #:parse-rpm-pathname
+   #:hash-rpm-versioned-names-by-name
+   #:hash-rpm-pathnames-by-packagename
+   #:parse-rpm-version #:parse-rpm-pathname
    #:rpm-pathname-packagename #:rpm-pathname-version
    #:rpm-version=
    #:rpm-version<= #:rpm-version< #:rpm-version>= #:rpm-version>
