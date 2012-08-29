@@ -3,7 +3,7 @@
 (in-package :cl)
 
 (defpackage :rpm
-  (:use :common-lisp :inferior-shell :λ-reader :fare-utils :xcvb-driver)
+  (:use :common-lisp :inferior-shell :λ-reader :xcvb-utils)
   (:import-from :asdf
    #:probe-file*)
   (:export
