@@ -35,5 +35,5 @@
     :for desired-version = (rpm-pathname-version desired-rpm)
     :for installed-version = (when installed-rpm
                                (rpm-versioned-name-version installed-rpm))
-    :unless (funcall test desired-version installed-version)
+    :unless (and installed-version (funcall test desired-version installed-version))
     :collect desired-rpm))
