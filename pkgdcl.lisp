@@ -4,8 +4,6 @@
 
 (defpackage :rpm
   (:use :common-lisp :inferior-shell :λ-reader :xcvb-utils)
-  (:import-from :asdf
-   #:probe-file*)
   (:export
    #:parse-rpm-versioned-name
    #:rpm-versioned-name-basename #:rpm-versioned-name-version

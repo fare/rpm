@@ -64,17 +64,17 @@
 (defun parse-rpm-version-component (v)
   "Given a version or release component of a RPM, parse it into a list
 of numbers and letters, e.g. \"0.99p7\" => (0 99 \"p\" 7)"
-  (loop :with r = () :with l = () :with len = (length v) :with i = 0
+  (loop :with r = () :with len = (length v) :with i = 0
     :while (< i len) :do
     (flet ((handle-component (predicate push)
              (when (and (< i len) (funcall predicate (char v i)))
                (let ((j (or (position-if-not predicate v :start (1+ i)) len)))
-                 (when push (push (funcall push (subseq v i j)) l))
+                 (when push (push (funcall push (subseq v i j)) r))
                  (setf i j)))))
       (handle-component #'ascii-letter-p #'parse-integer)
       (handle-component #'ascii-digit-p #'identity)
       (handle-component #'ascii-non-alphanumeric-p nil))
-    :finally (return (reverse l))))
+    :finally (return (reverse r))))
 
 (defun compare-rpm-version-chunks (ch1 ch2)
   "Given the first chunks of two respective version numbers,
