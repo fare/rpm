@@ -2,7 +2,7 @@
 
 (defsystem :rpm
   :depends-on (:inferior-shell :lambda-reader :cl-ppcre
-                               :fare-utils :asdf-driver)
+                               :fare-utils #-asdf3 :asdf-driver)
   :components
   ((:file "pkgdcl")
    (:file "specials" :depends-on ("pkgdcl"))
