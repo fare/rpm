@@ -3,7 +3,7 @@
 (in-package :cl)
 
 (defpackage :rpm
-  (:use :common-lisp :inferior-shell :λ-reader :fare-utils :asdf-driver)
+  (:use :common-lisp :inferior-shell :λ-reader :fare-utils :uiop)
   (:export
    #:parse-rpm-versioned-name
    #:rpm-versioned-name-basename #:rpm-versioned-name-version
